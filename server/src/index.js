@@ -3,7 +3,8 @@ import express from 'express'; //modern notation, put' "type": "module",' in pac
 import cors from 'cors'; // Rules between frontend and backend.
 import mongoose from 'mongoose'; // Database management system, allows queries to database. 
 
-import {userRouter} from './routes/users.js'
+import { userRouter } from '../routes/users.js';
+
 
 const app = express(); //generate version of API.
 
