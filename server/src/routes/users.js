@@ -18,7 +18,22 @@ router.post("/register", async (req, res ) => {
     await newUser.save(); //Saves to DB.
     res.json({message:"User Registered Successfully"}); 
 });
-router.post("/login");
+router.post("/login", async (req, res) =>{
+    const { username, password } = req.body;
+    const user = await UserModel.findOne({ username});
 
+    if (!user){
+        return res.json({message: "User Doesn't Exist!"}); //If the username is not found in the database, return a JSON message that the user Doesn't Exist.
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password); //Compares password with password with username. Compares Hashed password values using Bcrypt. If so, isPasswordValid becomes TRUE. FALSE OTHERWISE.
+
+    if (!isPasswordValid) {
+        return res.json({message: "Username or Password Is Incorrect!"})
+    }
+
+    const token = jwt.sign({id: user._id} , "secret"); //Makes sure user is authenticated.
+    res.json({token, userID: user._id })
+});
 
 export {router as userRouter};
