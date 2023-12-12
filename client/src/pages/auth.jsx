@@ -10,18 +10,38 @@ const Auth = () => {
 };
 
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+
   return (
-    <div>
-      {/* Add Login form components here */}
-    </div>
+    <Form
+    username={username}
+    setUsername={setUsername}
+    password={password}
+    setPassword={setPassword}
+  />
   );
 };
+
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  return (
+    <Form
+      username={username}
+      setUsername={setUsername}
+      password={password}
+      setPassword={setPassword}
+    />
+  );
+};
 
+
+
+const Form = ({ username, setUsername, password, setPassword }) => {
   return (
     <div className="auth-container">
       <form> <h2>Register</h2>
@@ -38,9 +58,13 @@ const Register = () => {
           <label htmlFor='password'> Password: </label>
           <input type="text" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
         </div>
+        <button type="submit"> Register</button>
       </form>
-
     </div>
   );
-};
+
+}
+
+
+
 export default Auth;
