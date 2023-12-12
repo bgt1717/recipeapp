@@ -20,6 +20,7 @@ const Login = () => {
     setUsername={setUsername}
     password={password}
     setPassword={setPassword}
+    label = "Login"
   />
   );
 };
@@ -35,16 +36,18 @@ const Register = () => {
       setUsername={setUsername}
       password={password}
       setPassword={setPassword}
+      label = "Register"
     />
   );
 };
 
 
 
-const Form = ({ username, setUsername, password, setPassword }) => {
+//The form has passed in props. 
+const Form = ({ username, setUsername, password, setPassword, label }) => {
   return (
     <div className="auth-container">
-      <form> <h2>Register</h2>
+      <form> <h2>{label}</h2>
         <div className="form-group">
           {/* html for refers to the input with the id called username */}
           <label htmlFor='username'> Username: </label>
@@ -52,7 +55,7 @@ const Form = ({ username, setUsername, password, setPassword }) => {
           <input type="text" id="username" value={username} onChange={(event) => setUsername(event.target.value)} />
         </div>
       </form>
-      <form> <h2>Register</h2>
+      <form> <h2>{label}</h2>
         <div className="form-group">
           {/* html for refers to the input with the id called username */}
           <label htmlFor='password'> Password: </label>
