@@ -4,6 +4,7 @@ import Auth from './pages/auth';
 import Home from './pages/home';
 import CreateRecipe from './pages/createRecipe';
 import SavedRecipes from './pages/savedRecipes';
+import Navbar from './components/navbar';
 
 
 
@@ -12,6 +13,7 @@ function App() {
   return (
     <>
     <Router>
+      <Navbar/>
       <Routes>
         {/* Element is the component that is rendered when going to path.  */}
         <Route path="/" element={<Home />} />
