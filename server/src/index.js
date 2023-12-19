@@ -4,7 +4,7 @@ import cors from 'cors'; // Rules between frontend and backend.
 import mongoose from 'mongoose'; // Database management system, allows queries to database. 
 
 import { userRouter } from './routes/users.js';
-import { recipesRouter } from './routes/recipes.js';
+import { recipesRouter } from './routes/recipes.js'; //pulls from recipes.js file in routes folder.
 
 
 const app = express(); //generate version of API.
@@ -13,7 +13,7 @@ app.use(express.json()); //JSON middleware. data sent from frontend is converted
 app.use(cors()); //Resolves issues with API requests with frontend.
 
 app.use("/auth", userRouter); // Seperating code to write endpoints related to authentication will exist in users.js
-app.use("/recipes", recipesRouter);
+app.use("/recipes", recipesRouter); 
 
 //bryce
 //oIsTcL1xm7UzIkLp
