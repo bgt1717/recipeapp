@@ -1,6 +1,7 @@
 import express  from "express";
 import mongoose from "mongoose";
 import { RecipeModel } from "../models/Recipes.js"; //Don't forget .js at end.
+import { UserModel } from "../models/Users.js";
 
 const router = express.Router();
 
@@ -22,6 +23,47 @@ router.post("/", async (req,res) =>{
         res.json(err);
     }
 })
+
+// Save a Recipe
+router.put("/", async (req, res) => {
+    const recipe = await RecipeModel.findById(req.body.recipeID);
+    const user = await UserModel.findById(req.body.userID);
+    try {
+      user.savedRecipes.push(recipe);
+      await user.save();
+      res.status(201).json({ savedRecipes: user.savedRecipes });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
+  // Get id of saved recipes
+  router.get("/savedRecipes/ids/:userId", async (req, res) => {
+    try {
+      const user = await UserModel.findById(req.params.userId);
+      res.status(201).json({ savedRecipes: user?.savedRecipes }); //? since it might be null.
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+
+  // Get saved recipes
+router.get("/savedRecipes/:userId", async (req, res) => {
+    try {
+      const user = await UserModel.findById(req.params.userId);
+      const savedRecipes = await RecipeModel.find({
+        _id: { $in: user.savedRecipes }, // find user id in recipe model that is in user list. 
+      });
+  
+      console.log(savedRecipes);
+      res.status(201).json({ savedRecipes });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+  
 
 
 
