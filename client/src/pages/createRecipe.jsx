@@ -72,6 +72,7 @@ const CreateRecipe = () => {
           name="cookingTime"
           onChange={handleChange}
         />
+        <button type="submit">Create Recipe</button>
       </form>
     </div>
   );
