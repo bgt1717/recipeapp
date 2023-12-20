@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const CreateRecipe = () => {
   const [recipe, setRecipe] = useState({
@@ -25,12 +26,23 @@ const CreateRecipe = () => {
     setRecipe({ ...recipe, ingredients: [...recipe.ingredients, ""] });
   };
 
-  console.log(recipe);
+  //console.log(recipe);
+const onSubmit = async (event) => {
+  event.preventDefault();
+  try{
+    await axios.post("http://localhost:3001/recipes", recipe);
+    alert("Recipe Created");
+  } catch(err){
+    console.log(err);
+  }
+};
+
 
   return (
     <div className="create-recipe">
       <h2> create recipe</h2>
-      <form>
+      {/* On Submit function passed in.  */}
+      <form onSubmit={onSubmit}> 
         <label htmlFor="name"> Name </label>
         <input type="text" id="name" name="name" onChange={handleChange} />
         <label htmlFor="description"> Description </label>
