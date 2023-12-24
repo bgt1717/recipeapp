@@ -2,6 +2,7 @@ import express  from "express";
 import mongoose from "mongoose";
 import { RecipeModel } from "../models/Recipes.js"; //Don't forget .js at end.
 import { UserModel } from "../models/Users.js";
+import { verifyToken } from "./users.js";
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.get("/", async (req, res)=> {
     }
 })
 
-router.post("/", async (req,res) =>{
+router.post("/", verifyToken, async (req,res) =>{
     const recipe = new RecipeModel(req.body); //The post request will save the information from the body.
     try{
         const response = await recipe.save(); //Saves recipe to DB. 
@@ -25,7 +26,7 @@ router.post("/", async (req,res) =>{
 })
 
 // Save a Recipe
-router.put("/", async (req, res) => {
+router.put("/", verifyToken, async (req, res) => {
     const recipe = await RecipeModel.findById(req.body.recipeID);
     const user = await UserModel.findById(req.body.userID);
     try {
