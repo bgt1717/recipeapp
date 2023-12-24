@@ -15,9 +15,14 @@ const Navbar = () => {
     <div className="navbar">
       <Link to="/"> Home </Link>
       <Link to="/create-recipe"> Create Recipe </Link>
-      <Link to="/saved-recipes"> Saved Recipes </Link>
+
       {!cookies.access_token ? (<Link to="/auth"> Login/Register </Link> //If there is not an access token in cookies, route to Login/Register page.  
-      ) : ( <button onClick={logout}>Logout </button>                    //Otherwise, Display a button to Logout. When pressed, it calls the logout function.
+      ) : ( 
+        <>
+      <Link to="/saved-recipes"> Saved Recipes </Link>
+
+      <button onClick={logout}>Logout </button>                   
+      </> //Otherwise, Display a button to Logout. When pressed, it calls the logout function.
       )}
     </div>
   )
