@@ -30,7 +30,7 @@ const Home = () => {
     };
 
     fetchRecipe();
-    fetchSavedRecipe();
+    if(cookies.access_token) fetchSavedRecipe();
   }, [userID]);
 
   const saveRecipe = async (recipeID) => {
