@@ -25,7 +25,7 @@ const Login = () => {
     event.preventDefault();
     try{
       //response grabs everything sent back from API. 
-      const response = await axios.post("http://localhost:3001/auth/login", {
+      const response = await axios.post("https://recipeapp-backend-1z7u.onrender.com/auth/login", {
         username, 
         password,
       }); //pass in object of username and password for the request.
@@ -56,7 +56,7 @@ const Register = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:3001/auth/register", {
+      await axios.post("https://recipeapp-backend-1z7u.onrender.com/auth/register", {
         username, 
         password,
       }); //pass in object of username and password for the request.

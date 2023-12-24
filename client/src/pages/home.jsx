@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/recipes");
+        const response = await axios.get("https://recipeapp-backend-1z7u.onrender.com/recipes");
         setRecipes(response.data);
       } catch (err) {
         console.log(err);
@@ -22,7 +22,7 @@ const Home = () => {
 
     const fetchSavedRecipe = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/recipes/savedRecipes/ids/${userID}`);
+        const response = await axios.get(`https://recipeapp-backend-1z7u.onrender.com/recipes/savedRecipes/ids/${userID}`);
         setSavedRecipes(response.data.SavedRecipes || []); // Ensure savedRecipes is initialized to an empty array
       } catch (err) {
         console.log(err);
@@ -35,7 +35,7 @@ const Home = () => {
 
   const saveRecipe = async (recipeID) => {
     try {
-      const response = await axios.put("http://localhost:3001/recipes", {
+      const response = await axios.put("https://recipeapp-backend-1z7u.onrender.com/recipes", {
         recipeID,
         userID,
       }, {headers:{authorization: cookies.access_token } });
