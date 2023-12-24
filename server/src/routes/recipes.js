@@ -38,9 +38,9 @@ router.put("/", async (req, res) => {
   });
   
   // Get id of saved recipes
-  router.get("/savedRecipes/ids/:userId", async (req, res) => {
+  router.get("/savedRecipes/ids/:userID", async (req, res) => {
     try {
-      const user = await UserModel.findById(req.params.userId);
+      const user = await UserModel.findById(req.params.userID);
       res.status(201).json({ savedRecipes: user?.savedRecipes }); //? since it might be null.
     } catch (err) {
       console.log(err);
@@ -49,9 +49,9 @@ router.put("/", async (req, res) => {
   });
 
   // Get saved recipes
-router.get("/savedRecipes/:userId", async (req, res) => {
+router.get("/savedRecipes/:userID", async (req, res) => {
     try {
-      const user = await UserModel.findById(req.params.userId);
+      const user = await UserModel.findById(req.params.userID);
       const savedRecipes = await RecipeModel.find({
         _id: { $in: user.savedRecipes }, // find user id in recipe model that is in user list. 
       });
