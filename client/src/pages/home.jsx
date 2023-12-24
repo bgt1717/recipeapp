@@ -37,7 +37,8 @@ const Home = () => {
         recipeID,
         userID,
       });
-      console.log(response);
+      // console.log(response);
+      setSavedRecipes(response.data.savedRecipes);
     } catch (err) {
       console.log(err);
     }
@@ -63,8 +64,7 @@ const Home = () => {
                 onClick={() => saveRecipe(recipe._id)}
                 disabled={isRecipeSaved(recipe._id)}
               >
-                {" "}
-                Save{" "}
+                {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
               </button>
             </div>
             <div className="instructions">
