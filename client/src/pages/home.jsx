@@ -52,7 +52,7 @@ const Home = () => {
 
   return (
 
-    <div>
+    <div className='home'>
 
       <h1>Recipes</h1>
       <ul>
@@ -77,7 +77,6 @@ const Home = () => {
           </li>
         ))}
       </ul>
-      home
     </div>
   )
 };
